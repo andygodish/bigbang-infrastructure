@@ -29,8 +29,8 @@ variable "key_name" {
   type        = string
 }
 
-variable "subnet_ids" {
-  description = "List of subnet ids where the bastion is allowed"
+variable "private_subnet_ids" {
+  description = "List of private subnet ids where the bastion is allowed"
   type        = list(string)
 }
 
@@ -39,4 +39,13 @@ variable "random_append" {
   type        = string
 }
 
+variable "storage_size" {
+  description = "GB of storage"
+  type = number
+}
+
+variable "storage_type" {
+  description = "storage type"
+  type = string
+}
 
