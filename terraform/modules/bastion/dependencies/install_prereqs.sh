@@ -16,4 +16,12 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 chmod 700 get_helm.sh
 ./get_helm.sh
 cp /usr/local/bin/helm /usr/bin/helm 
+curl -LO https://github.com/mozilla/sops/releases/download/v3.7.3/sops-v3.7.3.linux.amd64
+mv sops-v3.7.3.linux.amd64 /usr/bin/sops
+chmod 755 /usr/bin/sops
+curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.8.1/velero-v1.8.1-linux-amd64.tar.gz
+tar -xvf velero-v1.8.1-linux-amd64.tar.gz
+mv velero-v1.8.1-linux-amd64 /usr/bin/velero
+
+
 
