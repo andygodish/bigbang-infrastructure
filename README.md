@@ -1,25 +1,14 @@
 # bigbang-dev
 
-## Kubeconfig
-Pull in kubeconfig from aws s3
-
-```
-aws s3 cp s3://bigbang-dev-1h4-rke2/rke2.yaml ~/.kube/config
-```
-
-## Disable PSPs (BB Requirement)
-
-```
-kubectl patch psp system-unrestricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
-kubectl patch psp global-unrestricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
-kubectl patch psp global-restricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
-```
-
 ## Project Repository
 
-Create a work directory and clone the project repo. 
+Create a work directory and clone the project repo. Make sure you are working from the correct branch. 
 
 ## GPG Key 
 
 https://repo1.dso.mil/platform-one/big-bang/customers/template/-/tree/main/#create-gpg-encryption-key
+
+Note the $fp variable and how it is used in later steps involving pushing encrypted data to your git repo. 
+
+Summary: Using gpg to generate a key that will be used by sops for encryption. The multiline command generates a key named bigbang-dev-environment. This name is grepped for and assigend to a shell variable called $fp. This key is then implemented in the .sops.yaml file located in the bigbang directory. 
 

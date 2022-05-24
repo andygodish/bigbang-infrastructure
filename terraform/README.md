@@ -45,10 +45,22 @@ scp dev_server:/tmp/rke2.yaml /tmp/
 aws s3 cp /tmp/rke2.yaml s3://bigbang-dev-1h4-rke2/rke2.yaml
 ```
 
-## RKE2 Quick Commands
+## Kubeconfig
+Pull in kubeconfig from aws s3
 
 ```
 export PATH=/var/lib/rancher/rke2/bin:$PATH
 export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
 alias k=kubectl
+
+aws s3 cp s3://bigbang-dev-1h4-rke2/rke2.yaml ~/.kube/config
 ```
+
+## Disable PSPs (BB Requirement)
+
+```
+kubectl patch psp system-unrestricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
+kubectl patch psp global-unrestricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
+kubectl patch psp global-restricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
+```
+
