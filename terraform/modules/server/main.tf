@@ -1,7 +1,6 @@
 resource "aws_security_group" "server_sg" {
-  name        = "${var.name}-${var.random_append}-server"
   description = "Allow traffic for K8S Control Plane"
-  vpc_id      = aws_vpc.rke2_vpc.id
+  vpc_id      = var.vpc_id
 
   egress {
     from_port   = 0
@@ -33,15 +32,15 @@ resource "aws_security_group_rule" "server_cp_ingress" {
 }
 
 resource "aws_instance" "server" {
+  # name          = "${var.name}-${var.random_append}-server"
   ami           = var.ami
   instance_type = var.instance_type
-  count         = 1
 
   root_block_device {
     volume_type = var.storage_type
     volume_size = var.storage_size
   }
-  subnet_ids = var.private_subnet_ids
+  subnet_id                   = var.private_subnet_ids[0]
   vpc_security_group_ids      = [aws_security_group.server_sg.id]
   associate_public_ip_address = false
 

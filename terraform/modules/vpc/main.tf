@@ -18,8 +18,10 @@ locals {
 
   # Based on VPC CIDR, create subnet ranges
   cidr_index           = range(local.num_azs)
-  public_subnet_cidrs  = [for i in local.cidr_index : cidrsubnet(var.vpc_cidr, local.cidr_size, i)]
-  private_subnet_cidrs = [for i in local.cidr_index : cidrsubnet(var.vpc_cidr, local.cidr_size, i + local.cidr_step)]
+  # public_subnet_cidrs  = [for i in local.cidr_index : cidrsubnet(var.vpc_cidr, local.cidr_size, i)]
+  # private_subnet_cidrs = [for i in local.cidr_index : cidrsubnet(var.vpc_cidr, local.cidr_size, i + local.cidr_step)]
+  public_subnet_cidrs = ["10.190.236.0/25"]
+  private_subnet_cidrs = ["10.190.237.128/25"]
 }
 
 module "vpc" {
@@ -30,13 +32,14 @@ module "vpc" {
   name = var.name
   cidr = var.vpc_cidr
 
-  azs             = data.aws_availability_zones.available.names
+  # azs             = data.aws_availability_zones.available.names
+  azs = ["us-gov-west-1a"]
   public_subnets  = local.public_subnet_cidrs
   private_subnets = local.private_subnet_cidrs
 
-  enable_nat_gateway     = false
-  single_nat_gateway     = true
-  one_nat_gateway_per_az = false
+  enable_nat_gateway     = true
+  single_nat_gateway     = false
+  one_nat_gateway_per_az = true
 
   enable_dns_hostnames = true
   enable_dns_support   = true

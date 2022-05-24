@@ -8,6 +8,7 @@ locals {
   # You will need to subscribe to this image: https://aws.amazon.com/marketplace/pp?sku=cynhm1j9d2839l7ehzmnes1n0
   # image_id = run_cmd("sh", "-c", "aws ec2 describe-images --owners 'aws-marketplace' --filters 'Name=product-code,Values=cynhm1j9d2839l7ehzmnes1n0' --query 'sort_by(Images, &CreationDate)[-1].[ImageId]' --output 'text'")
   image_id = "ami-017e342d9500ef3b2"
+  // image_id = "ami-0ac4e06a69870e5be" //RHEL, no stig
 }
 
 terraform {

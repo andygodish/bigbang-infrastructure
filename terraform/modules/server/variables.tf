@@ -4,8 +4,8 @@ variable "name" {
 }
 
 variable "vpc_id" {
-  description = "id for vpc"
-  type        = string
+  description = "id of vpc"
+  type = string
 }
 
 variable "tags" {

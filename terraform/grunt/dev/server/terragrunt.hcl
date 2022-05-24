@@ -6,6 +6,7 @@ locals {
     yamldecode(file(find_in_parent_folders("env.yaml")))
   )
   image_id = "ami-017e342d9500ef3b2"
+  // image_id = "ami-0ac4e06a69870e5be"
 }
 
 terraform {
@@ -31,13 +32,6 @@ dependency "ssh" {
   }
 }
 
-dependency "utils" {
-  config_path = "../utils"
-  mock_outputs = {
-    random_append = "mock_random_append"
-  }
-}
-
 inputs = {
   cluster_name  = local.env.name
   vpc_id        = dependency.vpc.outputs.vpc_id
@@ -47,7 +41,6 @@ inputs = {
   instance_type = local.env.cluster.server.type
   download      = false
   enable_ccm    = true
-  random_append = dependency.utils.outputs.random_append
 
   block_device_mappings = {
     size = local.env.cluster.server.storage.size
@@ -64,6 +57,7 @@ inputs = {
   # Big Bang uses Istio instead of NGINX
   # https://docs.rke2.io/advanced/#disabling-server-charts/
   rke2_config = <<EOF
+write-kubeconfig-mode: 644
 disable:
 - rke2-ingress-nginx
 selinux: true
