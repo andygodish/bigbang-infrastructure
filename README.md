@@ -10,5 +10,12 @@ https://repo1.dso.mil/platform-one/big-bang/customers/template/-/tree/main/#crea
 
 Note the $fp variable and how it is used in later steps involving pushing encrypted data to your git repo. 
 
-Summary: Using gpg to generate a key that will be used by sops for encryption. The multiline command generates a key named bigbang-dev-environment. This name is grepped for and assigend to a shell variable called $fp. This key is then implemented in the .sops.yaml file located in the bigbang directory. 
+Summary: Using gpg to generate a key that will be used by sops for encryption. The multiline command generates a key named bigbang-dev-environment. This name is grepped for and assigend to a shell variable called $fp. This key is then implemented in the .sops.yaml file located in the platform directory. 
 
+## TLS Certificate
+
+platform/configmap.yaml contains info pertaining to the domain of your platform. By default, it is set to bigbang.dev. 
+
+## TODO
+
+Automate the creation of a ssh key and configuration for git repository. 
