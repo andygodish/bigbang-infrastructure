@@ -10,7 +10,7 @@ metadata:
   namespace: bigbang
 spec:
   interval: 1m
-  url: git@github.com:andygodish/bigbang-dev.git
+  url: https://github.com/andygodish/bigbang-dev
   ref:
     branch: test
   secretRef:
