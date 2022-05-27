@@ -2,6 +2,8 @@ domain: andyg.io
 
 # Uncomment the following settings if using the AWS RKE2 terraform setup
 istio:
+  keycloak: 
+    enabled: true
   ingressGateways:
     public-ingressgateway:
       type: "NodePort"
