@@ -9,9 +9,6 @@ istio:
       type: "NodePort"
       nodePortBase: 30000
 
-keycloak: 
-  enabled: true
-
 flux:
   interval: 1m
   rollback:
@@ -83,3 +80,6 @@ twistlock:
       persistence:
         size: 256Mi
 
+addons: 
+  keycloak: 
+    enabled: true
