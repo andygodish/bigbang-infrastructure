@@ -64,3 +64,6 @@ kubectl patch psp global-unrestricted-psp -p '{"metadata": {"annotations":{"secc
 kubectl patch psp global-restricted-psp -p '{"metadata": {"annotations":{"seccomp.security.alpha.kubernetes.io/allowedProfileNames": "*"}}}'
 ```
 
+## Register Target Groups 
+
+30000, 30001, 30002 targets need to be registered on the NLB in order for traffic to reach your nodes. 
