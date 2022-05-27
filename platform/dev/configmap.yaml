@@ -9,6 +9,9 @@ istio:
       type: "NodePort"
       nodePortBase: 30000
 
+keycloak: 
+  enabled: true
+
 flux:
   interval: 1m
   rollback:
