@@ -8,6 +8,15 @@ istio:
     public-ingressgateway:
       type: "NodePort"
       nodePortBase: 30000
+  extraServers: 
+  - port: 
+      name: https-keycloak
+      protocol: TLS
+      number: 8443
+    hosts: 
+    - keycloak.andyg.io
+    tls: 
+      mode: PASSTHROUGH
 
 flux:
   interval: 1m
