@@ -15,7 +15,7 @@ terragrunt run-all init
 terragrunt run-all apply
 ```
 
-Using local terraform state storage. S3 configurations are commented out in /terraform/infrastructure/terragrunt.hcl
+This repo is using local terraform state storage. S3 configurations are commented out in /terraform/infrastructure/terragrunt.hcl
 
 ## RKE2-Server not Initially Starting - Fix
 
